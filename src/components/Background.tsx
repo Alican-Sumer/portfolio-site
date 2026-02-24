@@ -5,7 +5,7 @@ export const Background = () => {
       <div 
         className="absolute inset-0 w-full h-full"
         style={{
-          backgroundImage: 'url("/background.jpg")',
+          backgroundImage: 'url("/matthias-kinsella-9e4pCscLDyY-unsplash.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

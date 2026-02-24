@@ -1,125 +1,169 @@
 // Portfolio context data for Claude API to reference when answering questions
 export const portfolioContext = {
   personalInfo: {
-    name: "John Doe", // Replace with your actual name
-    title: "Software Developer",
-    email: "asumer@ncsu.edu", // From your current code
-    location: "North Carolina", // Based on email domain
-    linkedin: "https://www.linkedin.com/in/alican-sumer", // From your current code
-    github: "https://github.com/Alican-Sumer", // From your current code
+    name: "Alican Sumer",
+    title: "Computer Science Student",
+    email: "asumer@ncsu.edu",
+    phone: "(919) 852-1802",
+    location: "Raleigh, NC",
+    citizenship: "US Citizen",
+    linkedin: "https://www.linkedin.com/in/Alican-Sumer",
+    github: "https://github.com/Alican-Sumer",
   },
-  
+
   about: `
-    I'm a passionate software developer with 5 years of experience building responsive, 
-    user-friendly web applications. My focus is on creating clean, maintainable code 
-    that delivers exceptional user experiences. I specialize in React, TypeScript, 
-    and modern web development technologies.
+    Hi, I'm Alican, a Computer Science student at North Carolina State University with a strong passion for full stack engineering and building products that solve problems encountered in daily life. I've built a solid foundation in software design, core computer science fundamentals, and analytical problem-solving which reflects in the projects I've done.
+
+    I'm skilled in Java, Python, SQL, and TypeScript, and I've built projects using tools and technologies like Docker, GitHub, REST APIs, and JWT authentication. My most exciting ongoing project is Palate, a restaurant discovery and food-focused social media mobile app designed to revolutionize how people explore and share dining experiences.
+
+    I'm currently seeking a Software Engineer opportunity where I can contribute, learn quickly, and grow alongside a team.
   `,
-  
+
   skills: [
+    "Python (pandas, NumPy, PyTorch)",
+    "Java",
+    "C",
+    "TypeScript",
+    "SQL (Postgres)",
+    "Docker",
+    "Git/GitHub",
+    "REST APIs",
+    "JWT Authentication",
     "React & React Native",
-    "TypeScript/JavaScript", 
-    "HTML/CSS/Tailwind",
     "Node.js",
-    "UI/UX Design",
-    "Modern Web Development",
-    "Responsive Design",
-    "Component Architecture"
+    "Attention to Detail",
+    "Problem Solving",
+    "Leadership",
+    "Analytical Thinking",
   ],
-  
+
+  education: {
+    school: "North Carolina State University",
+    location: "Raleigh, NC",
+    degree: "B.S. in Computer Science",
+    graduation: "May 2026",
+    concentration: "AI",
+    coursework: [
+      "Data Structures & Algorithms",
+      "Machine Learning",
+      "Trustworthy & Efficient Deep Learning",
+      "Software Engineering",
+      "Operating Systems",
+      "Linear Algebra",
+      "Database Management",
+    ],
+  },
+
+  experience: [
+    {
+      role: "Undergraduate Research - Microtransit Message Bot",
+      org: "NCSU Institute for Transportation Research & Education",
+      location: "Raleigh, NC",
+      period: "Aug 2025 - Dec 2025",
+      bullets: [
+        "Researched and developed an LLM-powered persuasive messaging system for public microtransit networks to increase rider flexibility and shared-ride utilization in underserved communities.",
+        "Built a full-stack prototype using Python, Streamlit, and MongoDB, integrating the OpenRouter API for personalized persuasion strategies based on rider priorities, empathy profiles, and scheduling willingness.",
+      ],
+    },
+    {
+      role: "Technical Intern",
+      org: "UnitedHealth Group",
+      location: "Raleigh, NC",
+      period: "May 2022 - Aug 2022",
+      bullets: [
+        "Led a cross-functional team of 5 to design and develop a Java-based communications prototype for senior residents (video calling, voice messages, photo sharing, texting, video messages).",
+        "Implemented 20+ accessibility features for WCAG 2.1 Level AA: screen reader support, voice control, high-contrast themes, minimum 44x44dp touch targets.",
+        "Validated prototype through usability testing with seniors (65+) across varying tech comfort levels.",
+      ],
+    },
+  ],
+
   projects: [
     {
-      title: "E-Commerce Platform",
-      description: "A fully responsive e-commerce platform built with React, TypeScript, and a headless CMS. Features include product filtering, user authentication, shopping cart, and secure checkout.",
-      technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Stripe API"],
-      highlights: "Modern UI, fast performance, seamless checkout experience"
+      title: "Full-Stack Restaurant Discovery App",
+      period: "Aug 2025 - Present",
+      description:
+        "Architected and containerized 3 microservices (Auth, User, Restaurant) using Node.js, TypeScript, and Express with PostgreSQL, Redis, and Neo4j, targeting <200ms API latency at scale. Built cross-platform mobile app (iOS/Android) with React Native and Expo plus React web app. Implemented JWT authentication, Redis session management, and rate limiting; maintained 80% code coverage with Jest and Supertest. Integrated Google Places API with Redis caching and PostgreSQL persistence. Designed 100-point multi-factor recommendation engine to score and rank restaurants.",
+      technologies: ["Node.js", "TypeScript", "Express", "PostgreSQL", "Redis", "Neo4j", "React Native", "Expo", "React", "JWT", "Jest", "Supertest", "Google Places API"],
+      highlights: "Microservices, <200ms latency target, 80% test coverage, multi-factor recommendation engine",
     },
     {
-      title: "Task Management App", 
-      description: "A collaborative task management application that helps teams organize projects, assign tasks, and track progress. Includes real-time updates, notifications, and analytics dashboard.",
-      technologies: ["React", "Redux", "Firebase", "Material UI", "Chart.js"],
-      highlights: "Real-time collaboration, analytics dashboard, team management"
+      title: "Web CRM Application",
+      period: "Mar 2025 - June 2025",
+      description:
+        "Designed and built a web application for field-based customer acquisition and contract management, streamlining door-to-door sales and achieving ~50% reduction in customer onboarding time. Created CRM with real-time sync, contract tracking, employee assignment algorithms, and automated contact processing. Implemented responsive mobile-first UI with digital form validation and cloud storage, eliminating manual paperwork for field sales teams.",
+      technologies: ["Web", "CRM", "Real-time sync", "Mobile-first UI", "Cloud storage"],
+      highlights: "50% reduction in onboarding time, real-time sync, mobile-first",
     },
     {
-      title: "Fitness Tracking Mobile App",
-      description: "A cross-platform mobile application for tracking workouts, nutrition, and health metrics. Features include custom workout plans, progress visualization, and social sharing capabilities.", 
-      technologies: ["React Native", "TypeScript", "Redux", "Firebase", "Health APIs"],
-      highlights: "Cross-platform, health API integration, social features"
+      title: "SimCLR Implementation",
+      period: "Jan 2025 - Feb 2025",
+      description:
+        "Implemented SimCLR self-supervised learning framework on CIFAR-10 using PyTorch with a ResNet-18 encoder and NCE loss, achieving 87% linear evaluation accuracy. Built end-to-end pipeline with custom data augmentation, t-SNE visualizations, and TensorBoard logging.",
+      technologies: ["PyTorch", "SimCLR", "ResNet-18", "CIFAR-10", "TensorBoard", "t-SNE"],
+      highlights: "87% linear eval accuracy, custom augmentation, TensorBoard",
     },
-    {
-      title: "Desktop Portfolio Website",
-      description: "An innovative portfolio website that mimics a desktop operating system interface with draggable windows, a taskbar, and interactive components. Built with React and TypeScript.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Lucide React"],
-      highlights: "Unique desktop UI, draggable windows, glass morphism design"
-    }
   ],
-  
+
+  leadership: [
+    {
+      org: "Neurotech Club @ NCSU",
+      role: "Software Engineer Lead",
+      location: "Raleigh, NC",
+      period: "Oct 2025 - Present",
+      bullets: [
+        "Spearheaded EEG signal processing pipelines using Python and SciPy; led engineers through preprocessing, artifact removal, and feature extraction for club research.",
+        "Developed a PyTorch ANN to classify epilepsy brain states on the Bonn EEG dataset (96.4% accuracy across 5 diagnostic categories).",
+        "Mentored and coordinated engineering efforts: project milestones, code reviews, and end-to-end ML workflows from signal processing to evaluation.",
+      ],
+    },
+  ],
+
   interests: [
-    {
-      category: "Technology",
-      description: "Fascinated by emerging technologies like AI, AR, and blockchain. Always exploring new frameworks and development tools."
-    },
-    {
-      category: "Outdoor Activities", 
-      description: "Avid hiker and rock climber, enjoying reconnecting with nature and physical challenges."
-    },
-    {
-      category: "Reading",
-      description: "Love sci-fi and technical books, particularly works by authors like Neal Stephenson."
-    },
-    {
-      category: "Gaming",
-      description: "Enjoy strategy and puzzle games that help unwind while keeping the mind sharp."
-    }
+    { category: "Technical", description: "Python, PyTorch, full-stack (TypeScript, Node, React Native), ML/AI, and building systems with clear APIs and tests." },
+    { category: "Leadership", description: "Leading engineering efforts, mentoring, code reviews, and defining project milestones in research and club settings." },
+    { category: "Research", description: "LLM-powered systems, EEG/neurotech, self-supervised learning, and accessibility (WCAG, usability testing)." },
+    { category: "Languages", description: "English (Fluent), German (Fluent)." },
   ],
-  
-  experience: `
-    5+ years of professional software development experience focusing on:
-    - Frontend development with React ecosystem
-    - TypeScript for type-safe applications  
-    - Modern CSS frameworks like Tailwind
-    - Component-driven architecture
-    - Responsive and accessible web design
-    - Performance optimization
-    - User experience design
-  `,
-  
-  education: "Computer Science background with focus on web technologies and software engineering principles",
-  
+
+  interestsIntro: `Before becoming a software engineer, I dreamed of being a professional Fortnite player. I competed for about seven years, ranking top 100 in North America for two consecutive years and earning $50,000 in tournament winnings. It was my passion for a long time, and I spent 6–8 hours a day playing. Now that my career plans have shifted, I spend my free time climbing, traveling, and trying new restaurants. Most of my money goes toward travel and food…`,
+
   workStyle: `
-    I believe in writing clean, maintainable code and creating exceptional user experiences. 
-    I enjoy collaborating with teams, solving complex problems, and staying up-to-date with 
-    the latest web development trends and best practices.
-  `
+    I focus on clean architecture, measurable outcomes, and inclusive design. I enjoy full-stack and ML work,
+    leading small teams, and solving problems from data and algorithms to APIs and UX.
+  `,
 };
 
 // Helper function to create a context string for Claude
 export const getContextString = (): string => {
+  const { personalInfo, about, skills, education, experience, projects, leadership, interests, interestsIntro, workStyle } = portfolioContext;
   return `
-You are an AI assistant helping visitors learn about ${portfolioContext.personalInfo.name}, a ${portfolioContext.personalInfo.title}.
+You are an AI assistant helping visitors learn about ${personalInfo.name}, a ${personalInfo.title} at ${education.school}.
 
 ABOUT:
-${portfolioContext.about}
+${about}
 
-SKILLS: ${portfolioContext.skills.join(', ')}
+CONTACT: ${personalInfo.citizenship} | ${personalInfo.phone} | ${personalInfo.email} | LinkedIn: ${personalInfo.linkedin} | GitHub: ${personalInfo.github}
 
-KEY PROJECTS:
-${portfolioContext.projects.map(p => 
-  `- ${p.title}: ${p.description} (Technologies: ${p.technologies.join(', ')})`
-).join('\n')}
+EDUCATION: ${education.degree}, ${education.school} (${education.graduation}). Concentration: ${education.concentration}. Coursework: ${education.coursework.join(', ')}
 
-INTERESTS: ${portfolioContext.interests.map(i => 
-  `${i.category}: ${i.description}`
-).join(' | ')}
+SKILLS: ${skills.join(', ')}
 
-EXPERIENCE: ${portfolioContext.experience}
+EXPERIENCE:
+${experience.map((e) => `- ${e.role} @ ${e.org} (${e.period}): ${e.bullets.join(' ')}`).join('\n')}
 
-CONTACT: 
-- Email: ${portfolioContext.personalInfo.email}
-- LinkedIn: ${portfolioContext.personalInfo.linkedin}
-- GitHub: ${portfolioContext.personalInfo.github}
+LEADERSHIP:
+${leadership.map((l) => `- ${l.role}, ${l.org} (${l.period}): ${l.bullets.join(' ')}`).join('\n')}
 
-Please answer questions about this person's background, experience, skills, and projects in a helpful and professional manner. Keep responses concise but informative. If asked about something not covered in this context, politely indicate that you don't have that specific information but can help with what you do know about their professional background.
+PROJECTS:
+${projects.map((p) => `- ${p.title} (${p.period}): ${p.description} [${p.technologies.join(', ')}]`).join('\n')}
+
+INTERESTS / AREAS: ${interests.map((i) => `${i.category}: ${i.description}`).join(' | ')}
+
+PERSONAL / INTERESTS STORY: ${interestsIntro}
+
+WORK STYLE: ${workStyle.trim()}
+
+Answer questions about this person's background, experience, skills, projects, and education in a helpful and professional manner. Keep responses concise and accurate. If asked about something not in this context, say you don't have that information but can help with what you do know.
   `.trim();
 };
-

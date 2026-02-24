@@ -1,6 +1,38 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { SearchIcon, LoaderIcon } from 'lucide-react';
 
+/** Renders response text with **bold** and newlines as actual formatting. */
+function formatResponseText(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = [];
+  let remaining = text;
+  let key = 0;
+  while (remaining.length > 0) {
+    const i = remaining.indexOf('**');
+    if (i === -1) {
+      parts.push(
+        ...remaining.split('\n').flatMap((line, j) => (j === 0 ? [line] : [<br key={`${key++}`} />, line]))
+      );
+      break;
+    }
+    const before = remaining.slice(0, i);
+    remaining = remaining.slice(i + 2);
+    const end = remaining.indexOf('**');
+    if (end === -1) {
+      parts.push(before, '**', remaining);
+      break;
+    }
+    const boldContent = remaining.slice(0, end);
+    remaining = remaining.slice(end + 2);
+    if (before) {
+      parts.push(
+        ...before.split('\n').flatMap((line, j) => (j === 0 ? [line] : [<br key={`${key++}`} />, line]))
+      );
+    }
+    parts.push(<strong key={`${key++}`}>{boldContent}</strong>);
+  }
+  return <>{parts}</>;
+}
+
 interface SearchBarProps {
   onSearch?: (query: string) => Promise<string>;
 }
@@ -18,14 +50,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     e.preventDefault();
     if (!query.trim() || !onSearch || isLoading) return;
 
-    console.log('SearchBar: Submitting query:', query.trim());
     setIsLoading(true);
     setShowResponse(false);
     
     try {
-      console.log('SearchBar: Calling onSearch function');
       const result = await onSearch(query.trim());
-      console.log('SearchBar: Received response:', result);
       setResponse(result);
       setShowResponse(true);
     } catch (error) {
@@ -141,7 +170,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           </div>
           
           <div className="text-sm text-black/80 leading-relaxed whitespace-pre-wrap">
-            {response}
+            {formatResponseText(response)}
           </div>
           
           <div className="mt-3 pt-3 border-t border-black/10">

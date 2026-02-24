@@ -20,6 +20,96 @@
   animation-fill-mode: both;
 }
 
-.slide-in-from-top-2 {
-  animation: slide-in-from-top 0.3s ease-out;
+/* Infinite horizontal carousel */
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-infinite {
+  display: flex;
+  width: max-content;
+  animation: scroll-infinite 90s linear infinite;
+}
+
+/* Window open animation */
+@keyframes window-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-window-enter {
+  animation: window-enter 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Project carousel transition */
+@keyframes project-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes project-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-project-next {
+  animation: project-slide-in-right 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-project-prev {
+  animation: project-slide-in-left 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Fullscreen tip popup */
+@keyframes fullscreen-tip-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fullscreen-tip-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.animate-fullscreen-tip-in {
+  animation: fullscreen-tip-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fullscreen-tip-out {
+  animation: fullscreen-tip-out 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

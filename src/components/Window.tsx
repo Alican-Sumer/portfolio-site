@@ -14,6 +14,8 @@ interface WindowProps {
   };
   isDraggable?: boolean;
   isResizable?: boolean;
+  zIndex?: number;
+  onFocus?: () => void;
 }
 export const Window: React.FC<WindowProps> = ({
   title,
@@ -28,7 +30,9 @@ export const Window: React.FC<WindowProps> = ({
     height: 420
   },
   isDraggable = true,
-  isResizable = true
+  isResizable = true,
+  zIndex = 50,
+  onFocus
 }) => {
   const [position, setPosition] = useState(initialPosition);
   const [size, setSize] = useState(initialSize);
@@ -47,7 +51,6 @@ export const Window: React.FC<WindowProps> = ({
     posX: 0,
     posY: 0
   });
-  const [wordCount, setWordCount] = useState(0);
   const windowRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   // Handle drag start
@@ -56,6 +59,7 @@ export const Window: React.FC<WindowProps> = ({
     if (e.target instanceof HTMLElement && (e.target.closest('.window-controls') || e.target.closest('.resize-handle'))) {
       return; // Don't start drag if clicking on window controls or resize handle
     }
+    e.preventDefault();
     setIsDragging(true);
     const rect = windowRef.current?.getBoundingClientRect();
     if (rect) {
@@ -140,62 +144,53 @@ export const Window: React.FC<WindowProps> = ({
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [isDragging, isResizing, dragOffset, resizeStart, resizeDirection]);
-  // Calculate word count
-  useEffect(() => {
-    if (contentRef.current) {
-      const text = contentRef.current.textContent || '';
-      const words = text.trim().split(/\s+/);
-      const filteredWords = words.filter(word => word.length > 0);
-      setWordCount(filteredWords.length);
-    }
-  }, [children]);
-  return <div ref={windowRef} className="absolute bg-gray-100 rounded shadow-xl border border-gray-300 overflow-hidden" style={{
-    left: position.x,
-    top: position.y,
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex: 50
-  }}>
-      {/* Window title bar - reduced height */}
-      <div className={`bg-blue-600 text-white px-3 py-1 flex items-center justify-between ${isDraggable ? 'cursor-move' : ''}`} onMouseDown={handleMouseDown}>
-        <div className="font-medium text-sm">{title}</div>
+  return (
+    <div
+      ref={windowRef}
+      className="absolute overflow-hidden rounded-2xl border border-white/20 bg-white/90 shadow-2xl backdrop-blur-xl animate-window-enter"
+      style={{
+        left: position.x,
+        top: position.y,
+        width: `${size.width}px`,
+        height: `${size.height}px`,
+        zIndex,
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
+      }}
+      onMouseDown={onFocus}
+    >
+      {/* Title bar */}
+      <div
+        className={`flex h-11 select-none items-center justify-between border-b border-black/5 px-4 ${isDraggable ? 'cursor-move' : ''}`}
+        onMouseDown={handleMouseDown}
+      >
+        <span className="text-sm font-semibold tracking-tight text-gray-800">{title}</span>
         <div className="window-controls flex items-center">
-          <button onClick={onClose} className="p-0.5 hover:bg-red-500 rounded transition-colors">
-            <XIcon size={16} />
+          <button
+            onClick={onClose}
+            className="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-red-500/15 hover:text-red-600"
+            aria-label="Close"
+          >
+            <XIcon size={18} />
           </button>
         </div>
       </div>
-      {/* Window content */}
-      <div ref={contentRef} className="p-4 h-[calc(100%-36px-20px)] overflow-auto">
-        <div className="responsive-content">{children}</div>
+      {/* Content */}
+      <div ref={contentRef} className="h-[calc(100%-2.75rem)] overflow-auto p-5">
+        <div className="responsive-content h-full min-h-0 text-gray-700">{children}</div>
       </div>
-      {/* Status bar with word count */}
-      <div className="h-5 bg-gray-200 border-t border-gray-300 text-xs text-gray-600 px-2 flex items-center justify-between">
-        <span>
-          Window size: {size.width}×{size.height}
-        </span>
-        <span>Word count: {wordCount}</span>
-      </div>
-      {/* Resize handles - only render if window is resizable */}
-      {isResizable && <>
-          {/* Top */}
-          <div className="resize-handle absolute top-0 left-0 right-0 h-1 cursor-ns-resize" onMouseDown={e => handleResizeStart(e, 'n')} />
-          {/* Right */}
-          <div className="resize-handle absolute top-0 right-0 bottom-0 w-1 cursor-ew-resize" onMouseDown={e => handleResizeStart(e, 'e')} />
-          {/* Bottom */}
-          <div className="resize-handle absolute bottom-0 left-0 right-0 h-1 cursor-ns-resize" onMouseDown={e => handleResizeStart(e, 's')} />
-          {/* Left */}
-          <div className="resize-handle absolute top-0 left-0 bottom-0 w-1 cursor-ew-resize" onMouseDown={e => handleResizeStart(e, 'w')} />
-          {/* Top-Left */}
-          <div className="resize-handle absolute top-0 left-0 w-4 h-4 cursor-nwse-resize" onMouseDown={e => handleResizeStart(e, 'nw')} />
-          {/* Top-Right */}
-          <div className="resize-handle absolute top-0 right-0 w-4 h-4 cursor-nesw-resize" onMouseDown={e => handleResizeStart(e, 'ne')} />
-          {/* Bottom-Left */}
-          <div className="resize-handle absolute bottom-0 left-0 w-4 h-4 cursor-nesw-resize" onMouseDown={e => handleResizeStart(e, 'sw')} />
-          {/* Bottom-Right with visible indicator */}
-          <div className="resize-handle absolute bottom-0 right-0 w-5 h-5 cursor-nwse-resize flex items-center justify-center" onMouseDown={e => handleResizeStart(e, 'se')}>
-            <div size={14} className="text-gray-500" />
-          </div>
-        </>}
-    </div>;
+      {/* Resize handles - minimal, only when resizable */}
+      {isResizable && (
+        <>
+          <div className="resize-handle absolute top-0 left-0 right-0 h-2 cursor-ns-resize" onMouseDown={(e) => handleResizeStart(e, 'n')} />
+          <div className="resize-handle absolute top-0 right-0 bottom-0 w-2 cursor-ew-resize" onMouseDown={(e) => handleResizeStart(e, 'e')} />
+          <div className="resize-handle absolute bottom-0 left-0 right-0 h-2 cursor-ns-resize" onMouseDown={(e) => handleResizeStart(e, 's')} />
+          <div className="resize-handle absolute top-0 left-0 bottom-0 w-2 cursor-ew-resize" onMouseDown={(e) => handleResizeStart(e, 'w')} />
+          <div className="resize-handle absolute top-0 left-0 w-3 h-3 cursor-nwse-resize rounded-tl" onMouseDown={(e) => handleResizeStart(e, 'nw')} />
+          <div className="resize-handle absolute top-0 right-0 w-3 h-3 cursor-nesw-resize rounded-tr" onMouseDown={(e) => handleResizeStart(e, 'ne')} />
+          <div className="resize-handle absolute bottom-0 left-0 w-3 h-3 cursor-nesw-resize rounded-bl" onMouseDown={(e) => handleResizeStart(e, 'sw')} />
+          <div className="resize-handle absolute bottom-0 right-0 w-3 h-3 cursor-nwse-resize rounded-br" onMouseDown={(e) => handleResizeStart(e, 'se')} />
+        </>
+      )}
+    </div>
+  );
 };
