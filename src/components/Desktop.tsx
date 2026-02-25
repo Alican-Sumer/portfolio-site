@@ -20,6 +20,8 @@ export const Desktop = () => {
     w: typeof window !== 'undefined' ? window.innerWidth : 1024,
     h: typeof window !== 'undefined' ? window.innerHeight - 40 : 680
   }));
+  const WINDOW_INITIAL_WIDTH = 1300;
+  const WINDOW_INITIAL_HEIGHT = 910;
   const centerPositionFor = (width: number, height: number) => ({
     x: Math.max(0, (clientSize.w - width) / 2),
     y: Math.max(0, (clientSize.h - height) / 2)
@@ -112,7 +114,7 @@ export const Desktop = () => {
         </div>
       </div>
       {/* Render windows */}
-      {openWindows.aboutMe && <Window title="About Me" onClose={() => handleCloseWindow('about-me')} initialPosition={centerPositionFor(1000, 700)} initialSize={{ width: 1000, height: 700 }} zIndex={getZIndex('about-me')} onFocus={() => handleWindowFocus('about-me')}>
+      {openWindows.aboutMe && <Window title="About Me" onClose={() => handleCloseWindow('about-me')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('about-me')} onFocus={() => handleWindowFocus('about-me')}>
           <div className="flex h-full min-h-0 flex-col items-center justify-center text-center">
             <div className="flex flex-col items-center gap-4">
               <img src="/profile-photo.jpg" alt="Profile" className="rounded-md w-32 h-32 object-cover" style={{ maxWidth: '100%' }} />
@@ -142,19 +144,13 @@ export const Desktop = () => {
             </div>
           </div>
         </Window>}
-      {openWindows.interests && <Window title="Interests & More" onClose={() => handleCloseWindow('interests')} initialPosition={centerPositionFor(1000, 700)} initialSize={{ width: 1000, height: 700 }} zIndex={getZIndex('interests')} onFocus={() => handleWindowFocus('interests')}>
+      {openWindows.interests && <Window title="Interests & More" onClose={() => handleCloseWindow('interests')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('interests')} onFocus={() => handleWindowFocus('interests')}>
           <InterestsCarousel introParagraph={portfolioContext.interestsIntro} />
         </Window>}
-      {openWindows.resume && <Window title="Resume" onClose={() => handleCloseWindow('resume')} initialPosition={centerPositionFor(1000, 700)} initialSize={{
-      width: 1000,
-      height: 700
-    }} zIndex={getZIndex('resume')} onFocus={() => handleWindowFocus('resume')}>
+      {openWindows.resume && <Window title="Resume" onClose={() => handleCloseWindow('resume')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('resume')} onFocus={() => handleWindowFocus('resume')}>
           <ResumeViewer onDownload={handleResumeDownload} />
         </Window>}
-      {openWindows.projects && <Window title="Projects" onClose={() => handleCloseWindow('projects')} initialPosition={centerPositionFor(1000, 700)} initialSize={{
-      width: 1000,
-      height: 700
-    }} zIndex={getZIndex('projects')} onFocus={() => handleWindowFocus('projects')}>
+      {openWindows.projects && <Window title="Projects" onClose={() => handleCloseWindow('projects')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('projects')} onFocus={() => handleWindowFocus('projects')}>
           <ProjectsCarousel currentIndex={projectCarouselIndex} onIndexChange={setProjectCarouselIndex} />
         </Window>}
     </div>;

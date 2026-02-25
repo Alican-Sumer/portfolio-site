@@ -1,0 +1,5 @@
+# For Git-based deploy: Netlify will run build and publish dist.
+# For manual drag-and-drop: build locally and drag the dist folder.
+[build]
+  command = "npm run build"
+  publish = "dist"

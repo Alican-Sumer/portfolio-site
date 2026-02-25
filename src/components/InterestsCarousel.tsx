@@ -99,9 +99,10 @@ export const InterestsCarousel: React.FC<{ introParagraph?: string }> = ({
   introParagraph = DEFAULT_INTRO,
 }) => {
   return (
-    <div className="flex min-h-full w-full flex-col items-center justify-center overflow-auto pt-10">
-      <p className="text-gray-700 mb-8 max-w-2xl shrink-0 text-center text-lg leading-relaxed tracking-tight">{introParagraph}</p>
-      <div className="flex w-full flex-1 min-h-0 flex-col items-center justify-center">
+    <div className="flex min-h-full w-full flex-col overflow-auto pt-12">
+      <div className="flex-1 min-h-[2rem] shrink-0" aria-hidden />
+      <div className="flex w-full flex-shrink-0 flex-col items-center">
+        <p className="text-gray-700 mb-8 max-w-2xl text-center text-lg leading-relaxed tracking-tight">{introParagraph}</p>
         <div className="w-full overflow-hidden">
           <div className="flex animate-scroll-infinite">
             <div className="flex gap-4 pr-4">
@@ -117,6 +118,7 @@ export const InterestsCarousel: React.FC<{ introParagraph?: string }> = ({
           </div>
         </div>
       </div>
+      <div className="flex-1 min-h-[2rem] shrink-0" aria-hidden />
     </div>
   );
 };

@@ -84,16 +84,8 @@ export const portfolioContext = {
       period: "Aug 2025 - Present",
       description:
         "Architected and containerized 3 microservices (Auth, User, Restaurant) using Node.js, TypeScript, and Express with PostgreSQL, Redis, and Neo4j, targeting <200ms API latency at scale. Built cross-platform mobile app (iOS/Android) with React Native and Expo plus React web app. Implemented JWT authentication, Redis session management, and rate limiting; maintained 80% code coverage with Jest and Supertest. Integrated Google Places API with Redis caching and PostgreSQL persistence. Designed 100-point multi-factor recommendation engine to score and rank restaurants.",
-      technologies: ["Node.js", "TypeScript", "Express", "PostgreSQL", "Redis", "Neo4j", "React Native", "Expo", "React", "JWT", "Jest", "Supertest", "Google Places API"],
+      technologies: ["Node.js", "TypeScript", "Express", "PostgreSQL", "Redis", "Neo4j", "React Native", "Expo", "React", "JWT", "Jest", "Supertest", "Docker"],
       highlights: "Microservices, <200ms latency target, 80% test coverage, multi-factor recommendation engine",
-    },
-    {
-      title: "Web CRM Application",
-      period: "Mar 2025 - June 2025",
-      description:
-        "Designed and built a web application for field-based customer acquisition and contract management, streamlining door-to-door sales and achieving ~50% reduction in customer onboarding time. Created CRM with real-time sync, contract tracking, employee assignment algorithms, and automated contact processing. Implemented responsive mobile-first UI with digital form validation and cloud storage, eliminating manual paperwork for field sales teams.",
-      technologies: ["Web", "CRM", "Real-time sync", "Mobile-first UI", "Cloud storage"],
-      highlights: "50% reduction in onboarding time, real-time sync, mobile-first",
     },
     {
       title: "SimCLR Implementation",
@@ -126,7 +118,7 @@ export const portfolioContext = {
     { category: "Languages", description: "English (Fluent), German (Fluent)." },
   ],
 
-  interestsIntro: `Before becoming a software engineer, I dreamed of being a professional Fortnite player. I competed for about seven years, ranking top 100 in North America for two consecutive years and earning $50,000 in tournament winnings. It was my passion for a long time, and I spent 6–8 hours a day playing. Now that my career plans have shifted, I spend my free time climbing, traveling, and trying new restaurants. Most of my money goes toward travel and food…`,
+  interestsIntro: `Before wanting to become a software engineer, I dreamed of being a professional Fortnite player. I competed for about seven years, ranking top 100 in North America for two consecutive years and earning $50,000 in tournament winnings. It was my passion for a long time, and I spent 6–8 hours a day playing. Now that my career plans have shifted, I spend my free time climbing, traveling, and trying new restaurants. Most of my money goes toward travel and food…`,
 
   workStyle: `
     I focus on clean architecture, measurable outcomes, and inclusive design. I enjoy full-stack and ML work,
