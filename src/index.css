@@ -4,6 +4,23 @@
 @import 'tailwindcss/utilities';
 /* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL */
 
+/* Hide scrollbars while preserving scroll behavior for selected containers */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.no-scrollbar * {
+  scrollbar-width: none;
+}
+
+.no-scrollbar *::-webkit-scrollbar {
+  display: none;
+}
+
 /* Custom animations for search bar */
 @keyframes slide-in-from-top {
   from {

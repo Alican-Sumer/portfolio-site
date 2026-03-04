@@ -16,6 +16,7 @@ interface WindowProps {
   isResizable?: boolean;
   zIndex?: number;
   onFocus?: () => void;
+  hideScrollbar?: boolean;
 }
 export const Window: React.FC<WindowProps> = ({
   title,
@@ -32,7 +33,8 @@ export const Window: React.FC<WindowProps> = ({
   isDraggable = true,
   isResizable = true,
   zIndex = 50,
-  onFocus
+  onFocus,
+  hideScrollbar = false
 }) => {
   const [position, setPosition] = useState(initialPosition);
   const [size, setSize] = useState(initialSize);
@@ -175,7 +177,10 @@ export const Window: React.FC<WindowProps> = ({
         </div>
       </div>
       {/* Content */}
-      <div ref={contentRef} className="h-[calc(100%-2.75rem)] overflow-auto p-5">
+      <div
+        ref={contentRef}
+        className={`h-[calc(100%-2.75rem)] overflow-auto p-5${hideScrollbar ? ' no-scrollbar' : ''}`}
+      >
         <div className="responsive-content h-full min-h-0 text-gray-700">{children}</div>
       </div>
       {/* Resize handles - minimal, only when resizable */}

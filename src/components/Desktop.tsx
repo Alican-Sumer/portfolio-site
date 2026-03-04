@@ -4,6 +4,7 @@ import { Window } from './Window';
 import { ProjectsCarousel } from './ProjectsCarousel';
 import { InterestsCarousel } from './InterestsCarousel';
 import { ResumeViewer } from './ResumeViewer';
+import { DesktopDoubleClickTip } from './DesktopDoubleClickTip';
 import { portfolioContext } from '../data/portfolioContext';
 export const Desktop = () => {
   const [openWindows, setOpenWindows] = useState({
@@ -65,6 +66,7 @@ export const Desktop = () => {
   return <div className="absolute inset-0 z-10" style={{
     height: 'calc(100vh - 40px)'
   }}>
+      <DesktopDoubleClickTip />
       <div className="absolute top-4 left-4">
         <div className="flex flex-col gap-2">
           <div onDoubleClick={() => handleIconDoubleClick('about-me')}>
@@ -147,10 +149,10 @@ export const Desktop = () => {
       {openWindows.interests && <Window title="Interests & More" onClose={() => handleCloseWindow('interests')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('interests')} onFocus={() => handleWindowFocus('interests')}>
           <InterestsCarousel introParagraph={portfolioContext.interestsIntro} />
         </Window>}
-      {openWindows.resume && <Window title="Resume" onClose={() => handleCloseWindow('resume')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('resume')} onFocus={() => handleWindowFocus('resume')}>
+      {openWindows.resume && <Window title="Resume" onClose={() => handleCloseWindow('resume')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('resume')} onFocus={() => handleWindowFocus('resume')} hideScrollbar>
           <ResumeViewer onDownload={handleResumeDownload} />
         </Window>}
-      {openWindows.projects && <Window title="Projects" onClose={() => handleCloseWindow('projects')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('projects')} onFocus={() => handleWindowFocus('projects')}>
+      {openWindows.projects && <Window title="Projects" onClose={() => handleCloseWindow('projects')} initialPosition={centerPositionFor(WINDOW_INITIAL_WIDTH, WINDOW_INITIAL_HEIGHT)} initialSize={{ width: WINDOW_INITIAL_WIDTH, height: WINDOW_INITIAL_HEIGHT }} zIndex={getZIndex('projects')} onFocus={() => handleWindowFocus('projects')} hideScrollbar>
           <ProjectsCarousel currentIndex={projectCarouselIndex} onIndexChange={setProjectCarouselIndex} />
         </Window>}
     </div>;
